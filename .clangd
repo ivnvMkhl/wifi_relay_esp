@@ -1,0 +1,18 @@
+CompileFlags:
+  Remove:
+    - -mlongcalls  # Удаляем проблемный флаг для clangd
+  Add:
+    - -mlong-calls  # Используем синтаксис, который понимает clangd
+    - --target=xtensa-lx106-elf
+    - -D__ets__
+    - -DICACHE_FLASH
+    - -I.pio/libdeps/esp01_1m/ESP8266WiFi/src
+    - -I.pio/libdeps/esp01_1m/ESP8266WebServer/src
+    - -I${platformio}/packages/framework-arduinoespressif8266/cores/esp8266
+Diagnostics:
+  ClangTidy:
+    Remove:
+      - modernize-use-trailing-return-type
+      - readability-identifier-length
+  Suppress:
+    - unknown-argument  # Игнорировать другие неизвестные флаги
